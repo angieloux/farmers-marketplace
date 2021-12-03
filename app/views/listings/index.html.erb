@@ -1,0 +1,8 @@
+<h1>Welcome to Farmers Marketplace!</h1>
+
+<% @listings.each do |listing| %>
+    <h3> <%= listing.name %></h3>
+    <h5> <%= listing.category.name %></h5>
+    <p><%= listing.description %></p>
+<% end %>
+

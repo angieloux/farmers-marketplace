@@ -5,12 +5,13 @@
     <h5> <%= listing.category.name %></h5>
     <p><%= listing.description %></p>
 
-
 <%= link_to "View", listing_path(listing) %>
-<%= link_to "Edit", edit_listing_path(listing) %>
-<%= link_to "Delete", listing_path(listing) %>
-
+<% if user_signed_in? && current_user.id == listing.user.id %>
+    <%= link_to "Edit", edit_listing_path(listing) %>
+    <%= link_to "Delete", listing_path(listing), method: :delete, data: {confirm: "Are you sure?"} %>
 <% end %>
+<% end %>
+
 
 
 

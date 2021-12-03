@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     before_action :authenticate_user!, except: %i[index show]
-    before_action :find_listing, only: %i[show edit update]
+    before_action :find_listing, only: %i[show edit update destroy]
 
     def index
         @listings = Listing.all
@@ -38,6 +38,13 @@ class ListingsController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @listing.destroy 
+
+        redirect_to root_path
+        
     end
 
     private

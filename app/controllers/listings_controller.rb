@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
     before_action :authenticate_user!, except: %i[index show]
-    before_action :find_listing, only: %i[show edit destroy]
+    before_action :find_listing, only: %i[show edit update]
 
     def index
         @listings = Listing.all

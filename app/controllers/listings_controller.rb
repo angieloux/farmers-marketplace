@@ -10,11 +10,6 @@ class ListingsController < ApplicationController
     end
 
     def show
-        respond_to do |format|
-            format.html
-            format.text { render plain: @listing }
-            format.json { render json: @listing }
-        end
     end
 
     def new
@@ -61,10 +56,5 @@ class ListingsController < ApplicationController
         # because in the create method we already allocate listings to current user, it will already be able to access user_id, so we don't need to specify user_id here:
         params.require(:listing).permit(:name, :description, :price, :category_id)
     end
-
-    # def redirect_if_not_logged_in
-    #     redirect_to root_path unless current_user
-        
-    # end
     
 end

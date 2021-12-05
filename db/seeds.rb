@@ -6,10 +6,10 @@
 # #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 # #   Character.create(name: 'Luke', movie: movies.first)
 
-categories = %w[vegetables fruits confectionery dairy poultry meat]
-meats = %w[lamb beef pork goat fish]
-poultries = %w[chicken turkey duck guineafowl quail]
-dairies = %w[butter eggs milk cheese yoghurt]
+categories = %w[Vegetables Fruits Confectionery Dairy Poultry Meat]
+meats = %w[Lamb Beef Pork Goat Fish]
+poultries = %w[Chicken Turkey Duck Guineafowl Quail]
+dairies = %w[Butter Eggs Milk Cheese Yoghurt]
 
 if Category.count == 0 # if Category table is empty 
     categories.each do |category|
@@ -56,13 +56,13 @@ if Listing.count == 0 # if Listing table is empty
         
     # Create poultry
     poultries.each do |poultry|
-        Listing.create! name: poultry, price: Faker::Number.between(from: 1000, to: 10000), category_id: 6, user_id: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph(sentence_count: 2) 
+        Listing.create! name: poultry, price: Faker::Number.between(from: 1000, to: 10000), category_id: 5, user_id: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph(sentence_count: 2) 
     end
     puts "Created poultry" 
 
     # Create dairy
     dairies.each do |dairy|
-        Listing.create! name: dairy, price: Faker::Number.between(from: 1000, to: 10000), category_id: 6, user_id: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph(sentence_count: 2) 
+        Listing.create! name: dairy, price: Faker::Number.between(from: 1000, to: 10000), category_id: 4, user_id: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph(sentence_count: 2) 
     end
     puts "Created dairy" 
 

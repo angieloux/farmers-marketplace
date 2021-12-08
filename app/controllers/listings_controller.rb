@@ -20,22 +20,29 @@ class ListingsController < ApplicationController
     def create
         @listing = current_user.listings.new(listings_params)
         
-        if @listing.save
-            redirect_to @listing
-        else
-            render :new
+        respond_to do |format|
+            if @recipe.save
+                upload_file
+                format.html { redirect_to @recipe }
+                
+            else
+                format.html { render :new }
+            end
         end
-
     end
 
     def edit
     end
 
     def update
-        if @listing.update(listings_params)
-            redirect_to @listing
-        else
-            render :edit
+        respond_to do |format|
+            if @listing.update(listings_params)
+                upload_file
+                format.html { redirect_to @listing }
+                
+            else
+                format.html { render :edit }
+            end
         end
     end
 
@@ -52,10 +59,7 @@ class ListingsController < ApplicationController
         @listing = Listing.find(params[:id])
     end
 
-    def listings_params
-        # because in the create method we already allocate listings to current user, it will already be able to access user_id, so we don't need to specify user_id here:
-        params.require(:listing).permit(:name, :description, :price, :category_id)
-    end
+   
 
     def upload_file
         # root is where app lives
@@ -69,6 +73,11 @@ class ListingsController < ApplicationController
         end
 
             @listing.update_attribute :image_filename, uploaded_file.original_filename
+    end
+
+    def listings_params
+        # because in the create method we already allocate listings to current user, it will already be able to access user_id, so we don't need to specify user_id here:
+        params.require(:listing).permit(:name, :description, :price, :category_id)
     end
     
 end

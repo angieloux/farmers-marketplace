@@ -6,7 +6,7 @@
     <%= form.file_field :image %>
 
     <%= form.label :category %>
-    <%= form.collection_select :category_id, Category.all, :id, :name, prompt: "Choose a category" %>
+    <%= form.select :category, Listing.all.collect{|p|p.category}.uniq %>
 
     <%= form.label :description %>
     <%= form.text_field :description, size: 30 %>

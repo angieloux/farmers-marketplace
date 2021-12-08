@@ -1,9 +1,9 @@
 
     <h3> <%= @listing.name %></h3>
-    <h5>Category: <%= @listing.category.name %></h5>
+    <h5>Category: <%= @listing.category %></h5>
     <h5>Price: <%= @listing.price %></h5>
     <% if @listing.image_filename %>
-        <%= image_tag "/images/#{listing.image_filename}", width='250px' %>
+        <%= image_tag "/images/#{@listing.image_filename}", width: '250px' %>
     <% end %>
     <p><%= @listing.description %></p>
 

@@ -22,6 +22,10 @@
 /storage/*
 !/storage/.keep
 
+# Ignore public image files, but keep the directory.
+/public/images/*
+!/public/images/.keep
+
 /public/assets
 .byebug_history
 

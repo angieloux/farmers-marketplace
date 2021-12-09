@@ -2,8 +2,11 @@ class ListingsController < ApplicationController
     before_action :authenticate_user!, except: %i[index show]
     before_action :find_listing, only: %i[show edit update destroy]
 
+    
     def index
-        @listings = Listing.all
+        # Eager load the listings
+        @listings = Listing.search(params[:search]).includes(:user, :category)
+        @categories = Category.all
     end
 
     def authenticate_user

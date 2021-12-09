@@ -1,8 +1,18 @@
 <h1>Welcome to the Online Farmers Market!</h1>
 
+<%= form_with(method: 'get', url: listings_path, scope: :search, local: true) do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :category_id %>
+    <%= f.select :category_id, @categories.map {|c| [c.name, c.id] }, :include_blank => true %>
+    
+    <%= f.submit "Search" %>
+    <% end %>
+
 <% @listings.each do |listing| %>
     <h3> <%= listing.name %></h3>
-    <h5> <%= listing.category %></h5>
+    <h5> <%= listing.category.name %></h5>
     <p><%= listing.description %></p>
     
 

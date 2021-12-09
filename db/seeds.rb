@@ -22,41 +22,56 @@ if User.count == 0 # if User table is empty
     puts "Created users"
 end
 
+categories = %w[Vegetables Fruit Confectionery Dairy Poultry Meat]
+
+if Category.count == 0 # if Category table is empty 
+    categories.each do |category|
+        Category.create(name: category)
+        puts "Category #{category} created"
+    end
+end
+
 if Listing.count == 0 # if Listing table is empty
     # Create fruits
     5.times do
-        Listing.create! name: Faker::Food.fruits, price: Faker::Number.between(from: 1000, to: 10000), category: 'Fruit', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
+        Listing.create! (
+            name: Faker::Food.fruits, 
+            price: Faker::Number.between(from: 1000, to: 10000), 
+            category_id: 2, 
+            user_id: Faker::Number.between(from: 1, to: 11), 
+            description: Faker::Lorem.paragraph(sentence_count: 3)
+        )
     end
         puts "Created fruits" 
 
         # Create vegetables 
     5.times do
-        Listing.create! name: Faker::Food.vegetables, price: Faker::Number.between(from: 1000, to: 10000), category: 'Vegetables', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
+        Listing.create! name: Faker::Food.vegetables, price: Faker::Number.between(from: 1000, to: 10000), category_id: 1, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
     end
         puts "Created vegetables" 
 
     # Create confectionery
     5.times do
-        Listing.create! name: Faker::Dessert.variety, price: Faker::Number.between(from: 1000, to: 10000), category: 'Confectionery', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
+        Listing.create! name: Faker::Dessert.variety, price: Faker::Number.between(from: 1000, to: 10000), category_id: 3, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
     end
         puts "Created confectionery" 
 
     # Create meat 
     meats.each do |meat|
-        Listing.create! name: meat, price: Faker::Number.between(from: 1000, to: 10000), category: 'Meat', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
+        Listing.create! name: meat, price: Faker::Number.between(from: 1000, to: 10000), category_id: 6, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2)
         
     end
     puts "Created meat" 
         
     # Create poultry
     poultries.each do |poultry|
-        Listing.create! name: poultry, price: Faker::Number.between(from: 1000, to: 10000), category: 'Poultry', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2) 
+        Listing.create! name: poultry, price: Faker::Number.between(from: 1000, to: 10000), category_id: 5, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2) 
     end
     puts "Created poultry" 
 
     # Create dairy
     dairies.each do |dairy|
-        Listing.create! name: dairy, price: Faker::Number.between(from: 1000, to: 10000), category: 'Dairy', user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2) 
+        Listing.create! name: dairy, price: Faker::Number.between(from: 1000, to: 10000), category_id: 4, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2) 
     end
     puts "Created dairy" 
 

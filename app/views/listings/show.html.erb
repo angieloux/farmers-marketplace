@@ -1,6 +1,6 @@
 
     <h3> <%= @listing.name %></h3>
-    <h5>Category: <%= @listing.category %></h5>
+    <h5>Category: <%= @listing.category.name %></h5>
     <h5>Price: <%= @listing.price %></h5>
     <% if @listing.image.attached? %>
         <%= image_tag url_for(@listing.image), width: '250px' %>

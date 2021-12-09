@@ -21,9 +21,8 @@ class ListingsController < ApplicationController
         @listing = current_user.listings.new(listings_params)
         
         respond_to do |format|
-            if @recipe.save
-                # upload_file
-                format.html { redirect_to @recipe }
+            if @listing.save
+                format.html { redirect_to @listing }
                 
             else
                 format.html { render :new }
@@ -37,7 +36,6 @@ class ListingsController < ApplicationController
     def update
         respond_to do |format|
             if @listing.update(listings_params)
-                # upload_file
                 format.html { redirect_to @listing }
                 
             else

@@ -15,4 +15,14 @@ class User < ApplicationRecord
   validates :name, presence:true #needs to have name
   validates :email, presence:true #needs to have email
 
+  has_many :purchases, class_name: 'Transaction', foreign_key: 'buyer_id'
+  has_many :sales, class_name: 'Transaction', foreign_key: 'seller_id'
+
+  has_many :purchased_listings, through: :purchases, source: :listing
+  has_many :sold_listings, through: :sales, source: :listing
+
+  # inner join the relation where there are sales present on transactions table (i.e. when user id == seller_id)
+  scope :sellers, -> { joins(:sales) }
+  # inner join the relation where there are purchases present on transactions table (i.e. when user id == buyer_id)
+  scope :buyers, -> { joins(:purchases) }
 end

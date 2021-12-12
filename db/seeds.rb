@@ -34,8 +34,7 @@ end
 if Listing.count == 0 # if Listing table is empty
     # Create fruits
     5.times do
-        Listing.create!
-            name: Faker::Food.fruits, price: Faker::Number.between(from: 1000, to: 10000), category_id: 2, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 3)
+        Listing.create! name: Faker::Food.fruits, price: Faker::Number.between(from: 1000, to: 10000), category_id: 2, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 3)
     end
         puts "Created fruits" 
 

@@ -11,7 +11,7 @@ poultries = %w[Chicken Turkey Duck Guineafowl Quail]
 dairies = %w[Butter Eggs Milk Cheese Yoghurt]
 
 if User.count == 0 # if User table is empty 
-    User.create! name: "admin", email: "admin@admin", password: "password"
+    User.create! name: "admin", email: "admin@example.com", password: "password"
     puts "created admin"
     10.times do
         name = Faker::Name.name
@@ -34,13 +34,7 @@ end
 if Listing.count == 0 # if Listing table is empty
     # Create fruits
     5.times do
-        Listing.create! (
-            name: Faker::Food.fruits, 
-            price: Faker::Number.between(from: 1000, to: 10000), 
-            category_id: 2, 
-            user_id: Faker::Number.between(from: 1, to: 11), 
-            description: Faker::Lorem.paragraph(sentence_count: 3)
-        )
+        Listing.create! name: Faker::Food.fruits, price: Faker::Number.between(from: 1000, to: 10000), category_id: 2, user_id: Faker::Number.between(from: 1, to: 10), description: Faker::Lorem.paragraph(sentence_count: 2)
     end
         puts "Created fruits" 
 

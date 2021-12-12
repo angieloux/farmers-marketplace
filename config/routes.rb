@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   root to: "listings#index"
 
   get "/payments/success", to: "payments#success"
+  post "/payments/", to: "payments#create_payment_intent", as: "create_payment_intent"
 end

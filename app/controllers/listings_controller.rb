@@ -6,6 +6,7 @@ class ListingsController < ApplicationController
     def index
         # Eager load the listings
         @listings = Listing.search(params[:search]).includes(:user, :category)
+        # Load the categories so a user can filter by category 
         @categories = Category.all
     end
 
@@ -20,7 +21,8 @@ class ListingsController < ApplicationController
         @listing = Listing.new
     end
 
-    def create
+    def create 
+        # Create a new listing for the current user 
         @listing = current_user.listings.new(listings_params)
         
         respond_to do |format|
@@ -39,6 +41,7 @@ class ListingsController < ApplicationController
     end
 
     def update
+        # Update the listing for the current user 
         respond_to do |format|
             if @listing.update(listings_params)
                 format.html { redirect_to @listing, notice: "Listing was successfully updated." }
@@ -51,6 +54,7 @@ class ListingsController < ApplicationController
     end
 
     def destroy
+        # Destroy the current listing
         @listing.destroy 
         respond_to do |format|
             format.html { redirect_to root_path, notice: "Listing was successfully destroyed." }
@@ -62,9 +66,9 @@ class ListingsController < ApplicationController
     
     # Use callbacks to share common setup or constraints between actions.
     def find_listing
+        # Locate the current listing according to params id
         @listing = Listing.find(params[:id])
     end
-
 
 
     # Only allow a list of trusted parameters through.
@@ -74,7 +78,9 @@ class ListingsController < ApplicationController
     end
 
     def set_form_variables
+        # Get all the categories 
         @categories = Category.all
+        # Get all the features 
         @features = Feature.all
       end 
     

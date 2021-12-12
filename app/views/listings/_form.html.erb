@@ -23,7 +23,7 @@
 </div>
 <div class="form-group mb-3">
    <%= form.label :category_id, class:"col form-label" %>
-    <%= form.select :category_id, categories.map {|c| [c.name, c.id]}, class: "form-select" %>
+    <%= form.select :category_id, @categories.map {|c| [c.name, c.id]}, class: "form-select" %>
 
 
 </div>

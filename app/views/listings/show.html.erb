@@ -1,4 +1,10 @@
-
+<div class='container d-flex flex-column flex-md-row px-2 my-2 my-md-5'>
+  <div class='content col-12 col-md-7 col-lg-8 p-0 pr-md-3'> 
+      <div class='col-12 p-0 main-preview mb-4'>
+          <% if @listing.image.attached? %>
+          <%=image_tag image_select(@listing), class:'thumbnail card-img top'%>
+          <% end %>
+      </div>
     <h3> <%= @listing.name %></h3>
     <h5>Category: <%= @listing.category.name %></h5>
     <h5>Price: <%= @listing.price %></h5>
@@ -6,12 +12,28 @@
         <%= image_tag url_for(@listing.image), width: '250px' %>
     <% end %>
     <p><%= @listing.description %></p>
+    <%@listing.features.each do |feature|%>
+        <span class='badge badge-pill badge-info'><%=feature.name%></span>
+        <%end%>
+            <p class='blockquote mt-2'><%=@listing.description%></p>
+
+    Posted by <%= @listing.username %> on <%= @listing.date_created %>.
+
+<div class='container'>
+  <div class ='d-flex justify-content-evenly'>
 
 <!-- only let the user who created the listing edit and delete it -->
 <% if user_signed_in? && current_user.id == @listing.user.id %>
-    <%= link_to "Edit", edit_listing_path(@listing) %>
-    <%= link_to "Delete", listing_path(@listing), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-warning mr-3" %>
+    <%= link_to "Delete", @listing, method: :delete, data: {confirm: "Are you sure?"} , class: "btn btn-danger mr-3" %>
+<%elsif user_signed_in? %>
+    <%= button_to "Buy: $#{@listing.price / 100.0}", class: "btn btn-primary p-3"%>
+<%else%>
+    <%=button_to "Login to buy", new_user_session_path, class: "btn btn-info"%>
 <% end %>
+</div>
+
+ <%# create_payment_intent_path, method: :post, remote: true, params:{id: @listing.id},  %>
 
 <button data-stripe="payment">Buy <%= number_to_currency(@listing.price) %></button>
 

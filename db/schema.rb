@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 2021_12_12_055731) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image_filename"
+    t.string "username"
+    t.datetime "date_created"
     t.index ["category_id"], name: "index_listings_on_category_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
@@ -108,6 +110,8 @@ ActiveRecord::Schema.define(version: 2021_12_12_055731) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "features_listings", "features"
+  add_foreign_key "features_listings", "listings"
   add_foreign_key "listings", "categories"
   add_foreign_key "listings", "users"
   add_foreign_key "transactions", "users", column: "buyer_id"

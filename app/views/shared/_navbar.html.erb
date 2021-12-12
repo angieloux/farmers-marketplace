@@ -1,8 +1,26 @@
-<%= link_to 'Home', listings_path %>
-<% if user_signed_in? %>
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-    <%= link_to 'Add listing', new_listing_path %>
-<% else %>
-    <%= link_to 'Log in', new_user_session_path %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-<% end %>
+<nav class="navbar navbar-expand-md sticky-top">
+    <div class= "container-fluid">
+        <%= link_to 'Virtual Farmers Market', root_path, class: "nav-link" %>
+    
+    <ul class="navbar-nav mr-5-lg">
+        <li class="nav-item">
+            <%= link_to 'Home', listings_path, class: "nav-link" %></li>
+
+    <% if user_signed_in? %>
+    <li class="nav-item">
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        </li>
+        <li class="nav-item">
+        <%= link_to 'Add listing', new_listing_path %>
+        </li>
+    <% else %>
+    <li class="nav-item">
+        <%= link_to 'Log in', new_user_session_path %>
+        </li>
+        <li class="nav-item">
+        <%= link_to 'Sign up', new_user_registration_path %>
+        </li>
+    <% end %>
+    </div>
+    </ul>
+    </nav>

@@ -11,9 +11,9 @@ class User < ApplicationRecord
     :timeoutable, timeout_in: 30.minutes
     
 
-  has_many :listings, dependent: :destroy
-  validates :name, presence:true #needs to have name
-  validates :email, presence:true #needs to have email
+  has_many :listings, dependent: :destroy # a user has many listings, dependent on the destroy method
+  validates :name, presence:true # a user needs to have name
+  validates :email, presence:true #a user needs to have email
 
   has_many :purchases, class_name: 'Transaction', foreign_key: 'buyer_id'
   has_many :sales, class_name: 'Transaction', foreign_key: 'seller_id'

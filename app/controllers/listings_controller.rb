@@ -13,28 +13,6 @@ class ListingsController < ApplicationController
     end
 
     def show
-        session = Stripe::Checkout::Session.create(
-            payment_method_types: ['card'],
-            # customer_email: 'angela@test.com',
-            # customer_email: current_user.email,
-            line_items: [{
-                name: @listing.name,
-                description: @listing.description,
-                # image: @listing.image,
-                amount: @listing.price,
-                currency: 'aud',
-                quantity: 1,
-            }],
-            payment_intent_data: {
-                metadata: {
-                    listing_id: @listing.id
-                }
-            },
-            success_url: "#{root_url}/payments/succes?listingId=#{@listing.id}",
-            cancel_url: "#{root_url}listings"
-        )
-        @session_id = session.id
-
     end
 
     def new
@@ -62,7 +40,6 @@ class ListingsController < ApplicationController
         respond_to do |format|
             if @listing.update(listings_params)
                 format.html { redirect_to @listing }
-                
             else
                 format.html { render :edit }
             end
@@ -77,13 +54,15 @@ class ListingsController < ApplicationController
     end
 
     private
-
+    
+    # Use callbacks to share common setup or constraints between actions.
     def find_listing
         @listing = Listing.find(params[:id])
     end
 
 
 
+    # Only allow a list of trusted parameters through.
     def listings_params
         # because in the create method we already allocate listings to current user, it will already be able to access user_id, so we don't need to specify user_id here:
         params.require(:listing).permit(:name, :image, :description, :price, :category)

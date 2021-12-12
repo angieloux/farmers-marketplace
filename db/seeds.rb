@@ -50,7 +50,6 @@ if Listing.count == 0 # if Listing table is empty
 
         rand(1..5).times do
             listing.features << Feature.all.sample
-            listing.features.uniq
         end
         puts "Created #{listing.features}"
     end

@@ -59,14 +59,15 @@ class ListingsController < ApplicationController
     end
 
     private
-
+    
+    # Use callbacks to share common setup or constraints between actions.
     def find_listing
         @listing = Listing.find(params[:id])
     end
 
 
 
-
+    # Only allow a list of trusted parameters through.
     def listings_params
         # because in the create method we already allocate listings to current user, it will already be able to access user_id, so we don't need to specify user_id here:
         params.require(:listing).permit(:name, :image, :description, :price, :category_id)

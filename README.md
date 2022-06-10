@@ -6,9 +6,6 @@ Example data has been loaded into the app. Please feel free to log in with admin
 
 In Australia, 7.6 million tonnes of food is wasted every single year -- 70% of which is perfectly edible. Most of that comes from our own homes. 5 million Australians suffer from food insecurity. We have enough food. What we don't have, is a way to get it into the mouths of our nation's hungriest people. Virtual Farmer's Market is an app that allows you to connect to people in your neighbourhood and buy and sell food to one another. From freshly baked bread, to free-range eggs from your chicken coop, to confectionary items you bought too much of at the store. The Virtual Farmer's Market enables food distribution to tackle the ever growing problem of food insecurity in Australia.  
 
-https://dashboard.heroku.com/login
-https://github.com/angieloux/farmers-marketplace
-
 ## Functionality / features  
 The home page features a number of listings of various categories (i.e. poultry, meat, confectionery, fruits & vegetables). Once a user has signed up with a name, email and password, they can make a purchase, add a listing of their own, or edit an existing listing that they own. A listing must include a name, category, description and price and can optionally include an image and some feature tags. A non-logged in user can view products, but will be prompted to sign in if they want to make a purchase. 
 

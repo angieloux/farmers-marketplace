@@ -64,3 +64,7 @@ gem "faker", "~> 2.19"
 
 gem "aws-sdk-s3", "~> 1.109", require: false
 gem "stripe", "~> 5.41"
+
+gem "bcrypt", "~> 3.1"
+
+gem "bootstrap", "= 4.6"

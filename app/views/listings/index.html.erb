@@ -1,28 +1,37 @@
-<h1>Welcome to the Online Farmers Market!</h1>
-
-<%= form_with(method: 'get', url: listings_path, scope: :search, local: true) do |f|%>
+<div class="container-fluid align-items-center d-flex flex-column">
+  <h1>What are you hungry for?</h1>
+  <%= form_with(method: 'get', url: listings_path, scope: :search, local: true) do |f|%>
     <%= f.label :name %>
     <%= f.text_field :name %>
-
     <%= f.label :category_id %>
-    <%= f.select :category_id, @categories.map {|c| [c.name, c.id] }, :include_blank => true %>    
+    <%= f.select :category_id, @categories.map {|c| [c.name, c.id] }, :include_blank => true %>
     <%= f.submit "Search" %>
-    <% end %>
-
-<% @listings.each do |listing| %>
-    <h3> <%= listing.name %></h3>
-    <h5> <%= listing.category.name %></h5>
-    <p><%= listing.description %></p>
-    <% if listing.image.attached? %>
-        <%= image_tag url_for(listing.image), width: '250px' %>
-    <% end %>    
-    
-
-    <%= link_to "View", listing_path(listing) %>
-
-    <% if user_signed_in? && current_user.id == listing.user.id %>
-        <%= link_to "Edit", edit_listing_path(listing) %>
-        <%= link_to "Delete", listing_path(listing), method: :delete, data: {confirm: "Are you sure?"} %>
-    <% end %>
-
-<% end %>
+  <% end %>
+  <div class="container">
+    <div class="row mt-1 mb-1 border">
+      <% @listings.each do |listing| %>
+        <div class="col-sm-4 col justify-content-center d-flex flex-column align-content-start align-items-left mt-1 mb-1 ">
+          <h3> <%= listing.name %></h3>
+          <h5> <%= listing.category.name %></h5>
+          <p><%= listing.description %></p>
+          <% if listing.image.attached? %>
+            <%= image_tag url_for(listing.image), width: '250px', class: "border rounded mb-1 mt-1 box-shadow-1" %>
+          <% end %>
+          <div class="row">
+            <div class="col">
+              <%= link_to "View", listing_path(listing), class: "btn btn-primary text-white" %>
+            </div>
+            <% if user_signed_in? && current_user.id == listing.user.id %>
+              <div class="col">
+                <%= link_to "Edit", edit_listing_path(listing), class: "btn btn-secondary text-white" %>
+              </div>
+              <div class="col">
+                <%= link_to "Delete", listing_path(listing), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger text-white" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

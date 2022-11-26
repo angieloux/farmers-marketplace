@@ -42,11 +42,16 @@ if Category.count == 0 # if Category table is empty
     end
 end
 
+photos = Rails.root.join('/app/assets/images/food/', '*.{jpg,png,gif}')
+
+
 if Listing.count == 0 # if Listing table is empty
     # Create fruits
     5.times do
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: Faker::Food.fruits, price: Faker::Number.between(from: 1000, to: 10000), category_id: 2, user_id: id, description: Faker::Lorem.paragraph(sentence_count: 3), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
+        listing.photo.attach(io: '/app/assets/images/food/vegetables.jpeg', filename: 'vegetables.jpeg')
+        listing.save!
 
         rand(1..5).times do
             listing.features << Feature.all.sample
@@ -57,7 +62,7 @@ if Listing.count == 0 # if Listing table is empty
 
         # Create vegetables 
     5.times do
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: Faker::Food.vegetables, price: Faker::Number.between(from: 1000, to: 10000), category_id: 1, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
 
         rand(1..5).times do
@@ -70,7 +75,7 @@ if Listing.count == 0 # if Listing table is empty
 
     # Create confectionery
     5.times do
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: Faker::Dessert.variety, price: Faker::Number.between(from: 1000, to: 10000), category_id: 3, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
 
         rand(1..5).times do
@@ -83,7 +88,7 @@ if Listing.count == 0 # if Listing table is empty
 
     # Create meat 
     meats.each do |meat|
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: meat, price: Faker::Number.between(from: 1000, to: 10000), category_id: 6, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
 
         rand(1..5).times do
@@ -97,7 +102,7 @@ if Listing.count == 0 # if Listing table is empty
         
     # Create poultry
     poultries.each do |poultry|
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: poultry, price: Faker::Number.between(from: 1000, to: 10000), category_id: 5, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
 
         rand(1..5).times do
@@ -110,7 +115,7 @@ if Listing.count == 0 # if Listing table is empty
 
     # Create dairy
     dairies.each do |dairy|
-        id = rand(1..11)
+        id = 1
         listing = Listing.create! name: dairy, price: Faker::Number.between(from: 1000, to: 10000), category_id: 4, user_id: Faker::Number.between(from: 1, to: 11), description: Faker::Lorem.paragraph(sentence_count: 2), username: User.find(id).name, date_created: (DateTime.now - (rand * 21))
 
         rand(1..5).times do

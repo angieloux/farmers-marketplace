@@ -1,11 +1,83 @@
 // Place all the styles related to the listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+body {
+    background-color: rgba(234, 239, 236, 0.58)!important;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, label, a {
+    font-family: "Montserrat", sans-serif!important;
+    color: rgba(0, 0, 0, 0.782)!important;
+}
 .main-image{
     height: 400px;
     width: 400px;
 }
-
+.btn {
+    opacity: 80%!important;
+    font-family: 'Montserrat', sans-serif!important;
+}
 h1 {
     font-size: 40px!important;
+}
+
+h3 {
+    font-size: 1.4rem!important;
+}
+
+h6 {
+    text-transform: uppercase!important;
+}
+
+.listing-wrapper {
+    width: 300px;
+    margin: 20px!important;
+    padding: 5px!important;
+    border: 1px solid rgba(0, 0, 0, 0.161);
+   
+    
+
+}
+
+.listing-wrapper.shadow-lg.p-3.mb-5.rounded {
+    // background-color: rgba(81, 89, 86, 0.1)!important
+    background-color:white!important;
+}
+.listing-image {
+    display: flex;
+    flex-direction: column;;
+    align-items: center;
+    padding: 5px!important;
+    
+}
+
+.listings-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.center-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+a:hover {
+    background: none!important;
+    text-decoration: none!important;
+    color: #637AFD!important;
+    cursor: pointer!important;
+}
+
+
+.listing-content {
+    place-content: space-between;
+}
+
+.text-right {
+    text-align-last: right!important;
+    font-style: italic!important;;
 }

@@ -1,41 +1,48 @@
 <div class='container d-flex flex-column flex-md-row px-2 my-2 my-md-5'>
-  <div class='content col-12 col-md-7 col-lg-8 p-0 pr-md-3'> 
-      <div class='col-12 p-0 main-preview mb-4'>
+  <div class='d-flex flex-row w-100 listing-wrapper shadow-lg'>
+    <div class='col d-flex flex-column p-0'>
       <% if @listing.image.attached? %>
-        <%= image_tag url_for(@listing.image), width: '250px' %>
-    <% end %>
+        <%= image_tag url_for(@listing.image)%>
+      <% end %>
+    </div>
+    <div class='col d-flex flex-column p-3 listing-content'>
+      <div class="row d-flex flex-row align-items-center flex-wrap">
+        <div class="col-7 d-flex flex-column align-items-start">
+          <h3> <%= @listing.name %></h3>
+        </div>
+        <div class="col d-flex flex-column align-items-end">
+          <h6 class="label label-inverse"> <%= @listing.category.name %></h5>
+        </div>
       </div>
-    <h3> <%= @listing.name %></h3>
-    <h5>Category: <%= @listing.category.name %></h5>
-    <h5>Price: <%= @listing.price %></h5>
-    
-    <p><%= @listing.description %></p>
-    <%@listing.features.each do |feature|%>
-        <span class='badge badge-pill badge-info'><%=feature.name%></span>
+      <div class="row" >
+        <h5>Price: <%= "$#{@listing.price / 100.0}" %></h5>
+      </div>
+      <div class="row">
+        <p><%= @listing.description %></p>
+        <p class="text-right">
+          Posted by <%= @listing.username %> on <%= @listing.date_created %>.</p>
+      </div>
+      <div class="row">
+        <%@listing.features.each do |feature|%>
+          <span class='badge badge-pill badge-info'><%=feature.name%></span>
         <%end%>
-            <p class='blockquote mt-2'><%=@listing.description%></p>
-
-    Posted by <%= @listing.username %> on <%= @listing.date_created %>.
-
-<div class='container'>
-  <div class ='d-flex justify-content-evenly'>
-
-<!-- only let the user who created the listing edit and delete it -->
-<% if user_signed_in? && current_user.id == @listing.user.id %>
-    <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-warning mr-3" %>
-    <%= link_to "Delete", @listing, method: :delete, data: {confirm: "Are you sure?"} , class: "btn btn-danger mr-3" %>
-<%elsif user_signed_in?%>
-    <%if @listing.sold%>
-        <button disabled>Sold</button>
-    <%else%>
-    <%= button_to "Buy: $#{@listing.price / 100.0}", create_payment_intent_path, method: :post, remote: true, params:{id: @listing.id}, class: "btn btn-primary p-3"%>
-    <%end%>
-
-<%else%>
-    <%=button_to "Login to buy", new_user_session_path, class: "btn btn-info"%>
-<% end %>
-</div>
-
-<%= link_to 'Back', listings_path %>
-<script src="https://js.stripe.com/v3/"></script>
-
+      </div>
+      <div class='container'>
+        <div class ='d-flex justify-content-evenly'>
+          <!-- only let the user who created the listing edit and delete it -->
+          <% if user_signed_in? && current_user.id == @listing.user.id %>
+            <%= link_to "Edit", edit_listing_path(@listing), class: "btn btn-warning mr-3" %>
+            <%= link_to "Delete", @listing, method: :delete, data: {confirm: "Are you sure?"} , class: "btn btn-danger mr-3" %>
+          <%elsif user_signed_in?%>
+            <%if @listing.sold%>
+              <button disabled>Sold</button>
+            <%else%>
+              <%= button_to "Buy: $#{@listing.price / 100.0}", create_payment_intent_path, method: :post, remote: true, params:{id: @listing.id}, class: "btn btn-primary p-3"%>
+            <%end%>
+          <%else%>
+            <%=button_to "Login to buy", new_user_session_path, class: "btn btn-info"%>
+          <% end %>
+        </div>
+        <%= link_to 'Back', listings_path %>
+      </div>
+      <script src="https://js.stripe.com/v3/"></script>
